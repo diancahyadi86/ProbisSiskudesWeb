@@ -1,0 +1,137 @@
+@startuml
+title "SPJ Panjar Kegiatan"
+|Operator Desa (Administrator)|
+start
+:Klik Menu SPJ Kegiatan
+pada Data Entri Penatausahaan;
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+SPJ Kegiatan;
+note right
+    ..........................
+end note
+
+|Operator Desa (Administrator)|
+:Pilih Desa;
+fork
+    :**SPJ Panjar Kegiatan**;
+    :Pilih SPJ Panjar Kegiatan;
+    |Aplikasi Siskeudes (System)|
+    :Menampilkan Menu SPJ Panjar;
+    note right
+        ..........................
+    end note
+    |Operator Desa (Administrator)|
+    :Pilih Salah Satu SPP Panjar
+    yang akan di SPJ kan;
+    :Menginput Nomor SPJ;
+    note left
+        Input:
+        - No SPJ
+        - Tanggal SPJ
+        - Uraian
+        - Nilai (Rp)
+        - Kunci Bukti (Ceklis)
+    end note
+    :Memilih Nomor SPJ dan
+    Menginput Rincian SPJ;
+    note left
+        Input:
+        - Kode Rincian
+        - Nama Rincian
+        - Nilai Cair (Rp, Generated dari Bukti Kwitansi)
+        - Nilai Sisa (Rp, kalkulasi antara Nilai Cair dan Nilai SPP Panjar)
+    end note
+    |Operator Desa (Administrator)|
+    :Pilih salah satu Rincian SPP
+    yang telah diinput;
+
+    repeat
+        :Menambah Bukti
+        Pengeluaran/Kwitansi;
+        note left
+            Input:
+            - Nomor Bukti
+            - Tanggal Bukti
+            - Uraian
+            - Nilai (Rp)
+            - Nama Penerima
+            - Alamat
+            - Kode Bank
+            - No Rek. Bank
+            - Nama Bank
+            - NPWP
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan data
+            kwitansi;
+            :Generate Total
+            Nilai Kwitansi (Rp)
+            ke Nilai SPJ Cair;
+            :Generate Selisih Nilai
+            Total SPP dg SPJ (Jika Ada,Rp);
+
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+
+    |Operator Desa (Administrator)|
+    if (Ada Potongan?) then (yes)
+
+        :Pilih salah satu Kwitansi
+        yang telah diinput;
+        : Menginput data potong;
+        note left
+            Input:
+            - Kode Potongan
+            - Nama Potongan
+            - Nilai
+            - Billing Pajak
+        end note
+    else (no)
+        end
+    endif
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan data
+        kwitansi;
+
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data input;
+        |Operator Desa (Administrator)|
+    endif
+    end
+fork again
+
+    |Operator Desa (Administrator)|
+    :Pilih Sisa Panjar;
+    |Aplikasi Siskeudes (System)|
+    :Menampilkan list SPP yang belum diSPJkan
+    atau SPP yang tidak diSPJkan seluruhnya;
+    note right
+        ..........................
+    end note
+    |Operator Desa (Administrator)|
+    :Pilih Salah Satu SPJ;
+    :Menginput Bukti Sisa Panjar;
+    note right
+    Input:
+    - Nomor Bukti
+    - Tanggal Bukti
+    - Uraian
+    - Jumlah Kembali
+    end note
+    end
+    @enduml

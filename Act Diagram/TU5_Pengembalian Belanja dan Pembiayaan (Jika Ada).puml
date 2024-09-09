@@ -1,0 +1,88 @@
+@startuml
+title "Input Pengembalian Kelebihan Belanja dan Pembiayaan"
+|Operator Desa (Administrator)|
+start
+:Klik Menu Pengembalian
+pada Data Entri Penatausahaan;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu Pengembalian
+Kelebihan Belanja dan Pembiayaan;
+note right
+    .................
+end note
+
+|Operator Desa (Administrator)|
+:Pilih Desa;
+:Pilih "Belanja" atau "Pengembalian";
+
+|Aplikasi Siskeudes (System)|
+:Menampilan List TBP yang telah selesai dibuat;
+
+|Operator Desa (Administrator)|
+repeat
+    :Menambahkan TBP baru;
+    note left
+        Input
+        - No Bukti
+        - Tgl Bukti
+        - Uraian
+        - Jumlah (otomatis generated dari rincian bukti)
+        - Penyetor
+        - Alamat
+    end note
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan
+        input;
+
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data
+        input;
+        |Operator Desa (Administrator)|
+    endif
+repeat while (Data Lain?) is (yes)
+->no;
+
+|Operator Desa (Administrator)|
+:Pilih TBP yang telah dibuat;
+|Aplikasi Siskeudes (System)|
+:Menampilkan form pengisian
+Rincian Bukti Pengembalian;
+
+repeat
+    |Operator Desa (Administrator)|
+    :Menambahkan Rincian
+    Bukti Pengembalian;
+    note left
+        Input:
+        - Kode rincian
+        - Sumberdana
+        - Nama rekening (otomatis generated dari kode rincian)
+        - Nilai (Rp)
+    end note
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan input;
+        :Generate Total
+        Nilai Rincian Bukti (Rp)
+        ke Nilai TBP;
+
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data input;
+        |Operator Desa (Administrator)|
+    endif
+repeat while (Data Lain?) is (yes)
+->no;
+end
+
+
+@enduml

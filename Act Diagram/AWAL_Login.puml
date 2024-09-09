@@ -1,0 +1,53 @@
+@startuml loginpage
+start
+
+:Buka laman login website;
+note right
+    **Input**:
+    URL: https://www.figma.com/design/lecuo9rcn3fEMawMhXN8SY/Siskeudes?node-id=1-2&t=3hHXVtLJmgRKRwR7-4
+
+    **Display**:
+    - Shape : Rectangle, w 668, h 918, background color: EDE8F5, rounded corners: 28, center
+    - Logo "BPKP": w 167, h 63
+    - Logo "Kemendagri": w 96, h 124
+    - Judul "SISKEUDES": Font Color:000000, Font Type: Kanit, Font Size: 50, center, Font Style: Bold
+    - Label "Username": Font Color:000000, Font Type: inter, Font Size: 35, Font Style: Bold
+    - Input Box "Username": border color: 000000, border thickness: 1, Background Color: EDE8F5, Font Type: inter Extralight, Font Size: 20, text "Masukkan Username Anda"
+    - Label "Username": Font Color:000000, Font Type: inter, Font Size: 35, Font Style: Bold
+    - Input Box "Password": border color: 000000, border thickness: 1, Background Color: EDE8F5, Font Type: inter Extralight, Font Size: 20, text "Masukkan Password Anda"
+    - Icon "Eye Off", w 36, h 36
+    - Text "Lupa Password?": Font Color:000000, Font Type: inter, Font Size: 20
+    - Text "Tahun": Font Color:000000, Font Type: inter, Font Size: 20
+    - Dropdown Box "Tahun": Font Color:000000, Font Type: inter, Font Size: 20, w 99, h 43
+    - Textbox "Login": w 125, h 71, background color: 3D52A0, Font Color:FFFFFF, Font Type: inter, font style: Bold, Font Size: 35, Background Color:
+    - Line: w 565, thickness: 1, color: 000000
+    - Text "Belum Punya Akun?": Font Color:000000, Font Type: inter, font style: light, Font Size: 20,
+    - Text "Register": Font Color:000000, Font Type: inter, font style: bold, Font Size: 20,
+end note
+
+if (Validasi input) then (Valid)
+    :Kirim permintaan ke API untuk autentikasi;
+    :API memverifikasi kredensial;
+
+    if (Kredensial valid) then (Ya)
+        :API mengembalikan token autentikasi;
+        :Sistem men-direct ke laman utama;
+    else (Tidak)
+        :Tampilkan Dialog Box "Username atau Password Salah";
+        note right
+            Dialog Box:
+            - Shape: Rectangle, w 250, h 50, background color: 3D52A0, Font Color:FFFFFF, Font Type: inter, font style: Bold, Font Size: 20
+            - Text: "Input Tidak Valid", Font Color:FFFFFF, Font Type: inter, font style: Bold, Font Size: 20
+        end note
+    endif
+else (Tidak valid)
+    :Tampilkan pesan error "Input tidak valid";
+    note right
+        Dialog Box:
+        - Shape: Rectangle, w 250, h 50, background color: 3D52A0, Font Color:FFFFFF, Font Type: inter, font style: Bold, Font Size: 20
+        - Text: "Input Tidak Valid", Font Color:FFFFFF, Font Type: inter, font style: Bold, Font Size: 20
+    end note
+endif
+
+stop
+@enduml

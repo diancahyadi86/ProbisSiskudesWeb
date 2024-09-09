@@ -1,0 +1,163 @@
+@startuml
+title "Input SPP Definitif, SPP Panjar dan SPP Pembiayaan"
+|Operator Desa (Administrator)|
+start
+:       Klik Menu SPP Kegiatan
+pada Data Entri Penatausahaan;
+
+|Aplikasi Siskeudes (System)|
+:       Menampilkan Menu
+SPP Pelaksana Kegiatan;
+note right
+        ..........................
+end note
+
+|Operator Desa (Administrator)|
+:Pilih Desa;
+
+:Piih Menu SPP Definitif/Pembiayaan;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu List SPP
+Definitif/Pembiayaan yang telah dibuat;
+note right
+        ..........................
+end note
+
+|Operator Desa (Administrator)|
+repeat
+        :Menambahkan SPP;
+        note left
+                Input:
+                - No SPP
+                - Tgl SPP
+                - Uraian
+                - Nilai (Rp, otomatis tergenterate dari rincian kwitansi)
+                - status (final/draft option)
+                - realisasi capaian output
+        end note
+        if (simpan?) then (yes)
+                :simpan data;
+                |Aplikasi Siskeudes (System)|
+                :Menyimpan input
+                data SPP Kegiatan;
+
+        else (no)
+                |Operator Desa (Administrator)|
+                :batal;
+                |Aplikasi Siskeudes (System)|
+                :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+repeat while (Data Lain?) is (yes)
+->no;
+
+|Operator Desa (Administrator)|
+:Pilih salah satu SPP Kegiatan
+yang telah diinput;
+repeat
+        :Menambah Rincian SPP;
+        note left
+        Input:
+        - Kode Rincian
+        - Nama Rincian (generated dari kode)
+        - Nilai (Rp, generated dari bukti 
+          pengeluaran/kwitansi)
+        end note
+        :Pilih Kode Rek. Belanja pada
+        dropdown yang disediakan;
+        |Aplikasi Siskeudes (System)|
+        :Generate Nama Rincian Belanja;
+        |Operator Desa (Administrator)|
+        if (simpan?) then (yes)
+                :simpan data;
+                |Aplikasi Siskeudes (System)|
+                :Menyimpan input
+                Rincian SPP;
+        else (no)
+                |Operator Desa (Administrator)|
+                :batal;
+                |Aplikasi Siskeudes (System)|
+                :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+repeat while (Data Lain?) is (yes)
+->no;
+if (Jenis SPP?) then (Definitif/Pembiayaan)
+        |Operator Desa (Administrator)|
+        :Pilih salah satu Rincian SPP
+        yang telah diinput;
+
+        repeat
+                :Menambah Bukti
+                Pengeluaran/Kwitansi;
+                note left
+                        Input:
+                        - Nomor Bukti
+                        - Tanggal Bukti
+                        - Uraian
+                        - Nilai (Rp)
+                        - Nama Penerima
+                        - Alamat
+                        - Kode Bank
+                        - No Rek. Bank
+                        - Nama Bank
+                        - NPWP
+                end note
+                if (simpan?) then (yes)
+                        :simpan data;
+                        |Aplikasi Siskeudes (System)|
+                        :Menyimpan data
+                        kwitansi;
+                        :Generate Total
+                        Nilai Kwitansi (Rp)
+                        ke Nilai SPP;
+
+                else (no)
+                        |Operator Desa (Administrator)|
+                        :batal;
+                        |Aplikasi Siskeudes (System)|
+                        :clear data input;
+                endif
+                |Operator Desa (Administrator)|
+        repeat while (Data Lain?) is (yes)
+        ->no;
+
+        |Operator Desa (Administrator)|
+        if (Ada Potongan?) then (yes)
+
+                :Pilih salah satu Kwitansi
+                yang telah diinput;
+                : Menginput data potong;
+                note left
+                        Input:
+                        - Kode Potongan
+                        - Nama Potongan
+                        - Nilai
+                        - Billing Pajak
+                end note
+        else (no)
+                end
+        endif
+        if (simpan?) then (yes)
+                :simpan data;
+                |Aplikasi Siskeudes (System)|
+                :Menyimpan data
+                kwitansi;
+
+        else (no)
+                |Operator Desa (Administrator)|
+                :batal;
+                |Aplikasi Siskeudes (System)|
+                :clear data input;
+                |Operator Desa (Administrator)|
+        endif
+        end
+else (Panjar)
+|Aplikasi Siskeudes (System)|
+:Generate SPP ke 
+Menu SPJ Kegiatan;
+        end
+
+
+        @enduml

@@ -1,0 +1,162 @@
+@startuml
+title "Penerimaan Desa"
+|Operator Desa (Administrator)|
+start
+:Klik Menu Penerimaan Desa
+pada Data Entri Penatausahaan;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Penerimaan Desa;
+note right
+    ..........................
+end note
+|Operator Desa (Administrator)|
+:Pilih Desa;
+fork
+    :SILPA Tahun Lalu;
+    repeat
+        :Menjurnal Realisasi
+        SILPA Tahun Lalu;
+        note left
+            Input:
+            - Tanggal
+            - No Bukti/Ref
+            - Uraian
+            - Sumber Dana Silpa
+            Tahun Lalu
+            - Nilai SILPA
+            - Option (Proses/Unproses)
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data Realisasi SILPA;
+
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+    stop
+fork again
+    :Penerimaan Tunai/Bank;
+    repeat
+        :Menambah Tanda
+        Bukti Penerimaan;
+        note left
+            Input:
+            - Nomor Bukti
+            - Tgl Bukti
+            - Uraian
+            - Total (Rp) (Generated)
+            - Nama Penyetor
+            - Alamat
+            - Ttd
+            - Bank Penerima
+            - Nama Bank
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data TBP;
+            :If "Tunai", Mengenerate TBP
+            ke Sub Menu Penyetoran;
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+    repeat
+        :Menambah Rincian
+        Tanda Bukti Penerimaan;
+        note left
+            Input:
+            - Kode Rincian
+            - Sumber Dana
+            - Nama Rekening
+            - Nilai (Rp)
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data Rincian TBP;
+
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+    stop
+fork again
+    :Penyetoran;
+    repeat
+        :Menambah Surat
+        Tanda Setoran;
+        note right
+            Input:
+            - Nomor Bukti
+            - Tanggal Sektor
+            - Uraian
+            - Jumlah (generated dari
+            total rincian STS)
+            - Rekening
+            - Nama Bank
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data STS;
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+    repeat
+        :Menambah Rincian
+        Surat Tanda Setoran;
+        note right
+            Input:
+            - Nomor Bukti Penerimaan
+            (hasil generated
+            dari Penerimaan Tunai)
+            - Uraian
+            - Nilai (Rp)
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data Rincian STS;
+
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+    stop
+    @enduml

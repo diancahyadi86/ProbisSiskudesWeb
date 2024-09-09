@@ -1,0 +1,15 @@
+@startuml
+title "Penarikan Data RKPDes dan Perubahan"
+|Operator Desa (Administrator)|
+start
+:Klik Menu Penarikan Data
+RKPDes dan Perubahan Anggaran
+pada Data Entri Penganggaran;
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Isian Data Anggaran;
+note right
+    ..........................
+end note
+
+@enduml

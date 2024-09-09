@@ -1,0 +1,67 @@
+@startuml
+title "Input Pencairan SPP Definitif Kegiatan"
+|Operator Desa (Administrator)|
+start
+:       Klik Menu Pencairan SPP
+pada Data Entri Penatausahaan;
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Pencairan SPP;
+note right
+    ..........................
+end note
+
+|Operator Desa (Administrator)|
+:Pilih Desa;
+:Pilih Bukti Pencairan;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan List seluruh jenis
+SPP yang belum dicairkan;
+note right
+    ..........................
+end note
+
+|Operator Desa (Administrator)|
+repeat
+    :Memilih Salah Satu SPP;
+    :Menambahkan Bukti Pencairan;
+       |Aplikasi Siskeudes (System)|
+    :Generate Jumlah (Rp), Potongan (Rp)
+    Jumlah Dibayarkan (Rp)
+    dari input Rincian SPP;
+
+|Operator Desa (Administrator)|
+    :Menginput bukti pencairan;
+    note left
+        Input: 
+        - No Bukti
+        - Tgl Bayar
+        - Uraian
+        - Jenis Pembayaran
+        - Nama Bank (Jika Non Tunai)
+    end note
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan input;
+        :Menambahkan SPP ke
+        daftar list SPP
+        yang telah dicairkan;
+        :Mengenerate data
+        Potongan Pajak ke
+        Menu "Penyetoran Pajak";
+
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data input;
+    endif
+    |Operator Desa (Administrator)|
+repeat while (Data Lain?) is (yes)
+->no;
+end
+
+
+@enduml

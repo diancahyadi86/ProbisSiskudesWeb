@@ -1,0 +1,60 @@
+@startuml Environtment
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/main/icons/devicons2
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+
+!include DEVICONS/go.puml
+!include DEVICONS2/nextjs.puml
+!include DEVICONS/laravel.puml
+!include DEVICONS/mongodb.puml
+!include DEVICONS/msql_server.puml
+!include FONTAWESOME/users.puml
+
+
+
+
+Container_Boundary(cb, "Users") {
+Person(operator, "Operator Desa", "Penatausahaan Keuangan")
+Person(kades, "Kepala Desa", "Otorisasi & Supervisi")
+Person(masyarakat, "Masyarakat Desa", "Informasi Umum")
+}
+
+Container(reporting, "Dashboard & Reporting Service", "Laravel", "Interface untuk menampilkan dashboard dan laporan", $sprite="laravel")
+
+Container(webapp, "WebApps", "Next.js", "Interface utama dalam semua transaksi", $sprite="nextjs")
+Container(mobile, "SPA Mobile", "Next.js", "Interface mobile untuk transaksi tertentu", $sprite="nextjs")
+
+
+
+Container(api, "API", "golang", "Handles all business logic", $sprite="go")
+ContainerDb(db, "Database", "Microsoft SQL", "Store data and transaction", $sprite="msql_server")
+ContainerDb(nosql, "Historical Data", "Mongo DB", "Store historical data", $sprite="mongodb")
+
+
+
+
+
+Rel(operator, webapp, "menggunakan", "transaksi umum")
+Rel(operator, mobile, "menggunakan", "transaksi tertentu")
+
+
+Rel(kades, mobile, "menggunakan", "otorisasi transaksi dan pemantauan")
+
+Rel(masyarakat, webapp, "mendapatkan informasi", "informasi umum")
+
+Rel(webapp, api, "akses dan simpan data", "Data Transaksi")
+Rel(mobile, api, "akses dan simpan data", "Data Transaksi")
+
+Rel_L(webapp, reporting, "menampilkan laporan")
+Rel_R(mobile, reporting, "menampilkan laporan")
+
+Rel(reporting, api, "CRUD")
+
+
+Rel(api, db, "CRUD")
+Rel(api, nosql, "Historical Data")
+
+
+@enduml

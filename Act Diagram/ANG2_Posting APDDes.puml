@@ -1,0 +1,29 @@
+@startuml
+title "PERATURAN DESA TENTANG APBDESA"
+|Operator Desa (Administrator)|
+start
+:Klik Menu Peraturan APBDes
+pada Data Entri Penganggaran;
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Peraturan Desa ttg APBDes;
+note right
+    ..........................
+end note
+|Operator Desa (Administrator)|
+:Pilih Desa;
+fork
+:Perdes;
+stop
+fork again
+:Perkades;
+stop
+fork again
+:PTj APBDes;
+stop
+
+
+
+
+
+@enduml

@@ -1,0 +1,56 @@
+@startuml
+title: "Alur Mutasi Kas"
+|Operator Desa (Administrator)|
+start
+:Klik Menu Mutasi Kas
+pada Data Entri Penatausahaan;
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Mutasi Kas;
+note right
+        ....
+end note
+|Operator Desa (Administrator)|
+ :Pilih Desa;
+fork
+        :pengambilan;
+fork again
+        :penyetoran;
+fork again
+        :pendapatan bunga;
+fork again
+        :biaya admin bank;
+        endmerge
+        |Operator Desa (Administrator)|
+               repeat
+                :Menambahkan Mutasi Kas;
+                note left
+                        Input:
+                        - Jenis Mutasi Kas
+                        - Nomor Bukti
+                        - Tgl Bukti
+                        - Bank
+                        - Kode Rinci
+                        - Nama Rincian
+                        - Uraian
+                        - Nilai (Rp)
+                end note
+                if (simpan?) then (yes)
+                        :simpan data;
+                        |Aplikasi Siskeudes (System)|
+                        :Menyimpan
+                        input;
+
+                else (no)
+                        |Operator Desa (Administrator)|
+                        :batal;
+                        |Aplikasi Siskeudes (System)|
+                        :clear data
+                        input;
+                endif
+                |Operator Desa (Administrator)|
+        repeat while (Data Lain?) is (yes)
+        ->no;
+
+        stop
+        @enduml
