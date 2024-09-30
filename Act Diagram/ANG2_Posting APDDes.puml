@@ -69,8 +69,32 @@ else (no)
 |Aplikasi Siskeudes (System)|
 :Menyimpan data catatan;
 :Mentransfer catatan ke user desa;
-stop
-
+|Operator Desa (Administrator)|
+:Merevisi sesuai catatan supervisor;
+|Aplikasi Siskeudes (System)|
+:Menyimpan data;
+:Mentransfer data ke akun Supervisor;
+|Supervisor (Camat)|
+:Menyetujui revisi;
+|Aplikasi Siskeudes (System)|
+:memberikan approval ke user desa;
+|Operator Desa (Administrator)|
+:Memilih Jenis APBDes;
+note left
+Dropdown option:
+- Usulan APBDes
+- APBDes Awal
+- APBDes Perubahan
+end note
+:Menginput nomor administrasi;
+note left
+Input:
+- Nomor
+- Tanggal
+- Lembaran No.
+- Tanggal Lembaran
+endnote
+stop    
 
 
 
