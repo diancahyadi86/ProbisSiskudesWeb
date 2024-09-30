@@ -1,0 +1,46 @@
+@startuml
+title "Input Data Umum Desa"
+|Operator Desa (Admin Desa)|
+start
+:  Klik Menu 
+**Data Umum**;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Data Umum;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Tab Menu
+Data Umum;
+
+|Operator Desa (Admin Desa)|
+:Input Data Umum;
+note left
+    muncul box berisi tahun, nama desa
+    Input:
+    - Nama Kepala Desa (Short Answer)
+    - Jabatan Kades (Short Answer)
+    - Nama Sekdes (Short Answer)
+    - Jabatan Sekdes (Short Answer)
+    - Nama Kaur Keu (Short Answer)
+    - Jabatan Kaur Keu (Short Answer)
+    - NPWP Desa (Short Answer)
+    - Ibukota Desa (Short Answer)
+    - Tipologi Desa (Dropdown)
+end note
+if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan input
+        Data Umum;
+
+    else (no)
+        |Operator Desa (Admin Desa)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data input;
+    endif
+|Operator Desa (Admin Desa)|
+
+stop
+@enduml
