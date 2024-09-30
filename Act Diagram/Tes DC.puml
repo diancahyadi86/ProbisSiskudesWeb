@@ -1,0 +1,50 @@
+@startuml Tes_DC
+
+title "Jurnal Penyesuaian"
+|Operator Desa (Administrator)|
+start
+:hahahaha;
+:Klik Menu Penyesuaian
+pada Data Entri
+Penatasahaan;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan input
+Jurnal Penyesuaian;
+note right
+...
+endnote
+|Operator Desa (Administrator)|
+repeat
+    :Menambahkan Jurnal;
+    note left
+        Input:
+        - Tanggal
+        - Nomor Bukti/Ref
+        - Uraian
+        - Kode Buku
+        - Akun
+        - Saldo Debet
+        - Saldo Kredit
+        - Option (Posting/Unposting)
+    end note
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan input
+        Jurnal;
+
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data input;
+    endif
+    |Operator Desa (Administrator)|
+repeat while (Data Lain?) is (yes)
+->no;
+stop
+
+
+
+@enduml
