@@ -33,7 +33,8 @@ if (Validasi input) then (Valid)
         :API mengembalikan token autentikasi;
         :Sistem men-direct ke laman utama;
         note left
-        ....
+        URL:
+        ......................
         end note
     else (Tidak)
         :Tampilkan Dialog Box "Username atau Password Salah";
