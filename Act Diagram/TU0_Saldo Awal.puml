@@ -3,7 +3,7 @@ title "Saldo Awal Laporan Kekayaan Desa"
 |Operator Desa (Administrator)|
 start
 :Klik Menu Saldo Awal
-pada Data Entri 
+pada Data Entri
 PenataUsahaan;
 
 |Aplikasi Siskeudes (System)|
@@ -12,31 +12,75 @@ Saldo Awal Kekayaan Desa;
 note right
     ..........................
 end note
-|Operator Desa (Administrator)|
-repeat
-    :Menambahkan Akun
-    Saldo Awal;
-    note left
-        Input:
-        - Kode Rekening
-        - Nama Rekening
-        - Saldo Debet
-        - Saldo Kredit
-    end note
-    if (simpan?) then (yes)
-        :simpan data;
-        |Aplikasi Siskeudes (System)|
-        :Menyimpan input
-        Saldo Awal;
 
-    else (no)
+|Operator Desa (Administrator)|
+:Pilih Desa;
+fork
+    :**ASET (Debit)**;
+    repeat
+        :Menambahkan Akun
+        Saldo Awal;
+        note left
+            Input:
+            - Kode Rekening
+            - Nama Rekening
+            (otomatis generated)
+            - Nilai (Rp)
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data aset;
+
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
         |Operator Desa (Administrator)|
-        :batal;
+    repeat while (Data Lain?) is (yes)
+    ->no;
+fork again
+    :**KEWAJIBAN (Kredit)**;
+    repeat
+        :Menambahkan Akun
+        Saldo Awal;
+        note left
+            Input:
+            - Kode Rekening
+            - Nama Rekening
+            (otomatis generated)
+            - Nilai (Rp)
+        end note
+        if (simpan?) then (yes)
+            :simpan data;
+            |Aplikasi Siskeudes (System)|
+            :Menyimpan input
+            data aset;
+
+        else (no)
+            |Operator Desa (Administrator)|
+            :batal;
+            |Aplikasi Siskeudes (System)|
+            :clear data input;
+        endif
+        |Operator Desa (Administrator)|
+    repeat while (Data Lain?) is (yes)
+    ->no;
+    endmerge
+    :Memilih tombol "Hitung Ekuitas";
+    |Aplikasi Siskeudes (System)|
+    :Melakukan perhitungan ekuitas;
+    |Operator Desa (Administrator)|
+    if (simpan?) then (yes)
         |Aplikasi Siskeudes (System)|
+        :Menyimpan output
+        data ekuitas;
+    else (no)
         :clear data input;
     endif
     |Operator Desa (Administrator)|
-repeat while (Data Lain?) is (yes)
-->no;
-stop
-@enduml
+    stop
+    @enduml

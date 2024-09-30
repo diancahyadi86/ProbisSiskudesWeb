@@ -5,6 +5,8 @@ start
 :Klik Menu Peraturan APBDes
 pada Data Entri Penganggaran;
 |Aplikasi Siskeudes (System)|
+|Supervisor (Camat)|
+|Aplikasi Siskeudes (System)|
 :Menampilkan Menu
 Peraturan Desa ttg APBDes;
 note right
@@ -14,14 +16,60 @@ end note
 :Pilih Desa;
 fork
 :Perdes;
-stop
+note right
+Input:
+- Nama Desa
+- Nama Kades
+- Jabatan Kades
+- Nama Sekdes
+- Jabatan Sekdes
+- Lembaran No.
+- Tanggal
+- Tempat/Desa;
+endnote
 fork again
 :Perkades;
+note left
+Input:
+- Nama Desa
+- Nama Kades
+- Jabatan Kades
+- Nama Sekdes
+- Jabatan Sekdes
+- Tempat/Desa;
+end note
+end merge
+|Aplikasi Siskeudes (System)|
+:Menyimpan data;
+:Mentransfer data ke akun Supervisor;
+|Supervisor (Camat)|
+if (setuju?) then (yes);
+|Aplikasi Siskeudes (System)|
+:memberikan approval ke user desa;
+|Operator Desa (Administrator)|
+:Memilih Jenis APBDes;
+note right
+Dropdown option:
+- Usulan APBDes
+- APBDes Awal
+- APBDes Perubahan
+end note
+:Menginput nomor administrasi;
+note right
+Input:
+- Nomor
+- Tanggal
+- Lembaran No.
+- Tanggal Lembaran
+endnote
+stop    
+|Supervisor (Camat)|
+else (no)
+:Menambahkan catatan alasan penolakan;
+|Aplikasi Siskeudes (System)|
+:Menyimpan data catatan;
+:Mentransfer catatan ke user desa;
 stop
-fork again
-:PTj APBDes;
-stop
-
 
 
 

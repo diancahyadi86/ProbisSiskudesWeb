@@ -1,7 +1,6 @@
 @startuml loginpage
 start
 
-:hahahah;
 :Buka laman login website;
 note right
     **Input**:
@@ -33,6 +32,9 @@ if (Validasi input) then (Valid)
     if (Kredensial valid) then (Ya)
         :API mengembalikan token autentikasi;
         :Sistem men-direct ke laman utama;
+        note left
+        ....
+        end note
     else (Tidak)
         :Tampilkan Dialog Box "Username atau Password Salah";
         note right
