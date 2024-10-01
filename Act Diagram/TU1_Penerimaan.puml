@@ -23,7 +23,7 @@ fork
             - Tanggal
             - No Bukti/Ref
             - Uraian
-            - Sumber Dana Silpa
+            - Sumber Dana SILPA
             Tahun Lalu
             - Nilai SILPA
             - Option (Proses/Unproses)
@@ -31,7 +31,7 @@ fork
         if (simpan?) then (yes)
             :simpan data;
             |Aplikasi Siskeudes (System)|
-            :Menyimpan input
+            :Menyimpan input`
             data Realisasi SILPA;
 
         else (no)
@@ -51,6 +51,7 @@ fork again
         Bukti Penerimaan;
         note left
             Input:
+            - Jenis Penerimaan (Tunai/Bank)
             - Nomor Bukti
             - Tgl Bukti
             - Uraian
