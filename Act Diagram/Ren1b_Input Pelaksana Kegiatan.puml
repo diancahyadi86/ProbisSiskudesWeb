@@ -1,0 +1,42 @@
+@startuml
+title "Input Pelaksana Kegiatan Desa"
+|Operator Desa (Admin Desa)|
+start
+:  Klik Menu 
+**Data Umum**;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Menu
+Data Umum;
+
+|Operator Desa (Admin Desa)|
+:     Klik Tab Menu
+Pelaksana Kegiatan;
+
+|Aplikasi Siskeudes (System)|
+:Menampilkan Tab Menu
+Pelaksana Kegiatan;
+
+|Operator Desa (Admin Desa)|
+:Input Pelaksana Kegiatan;
+note left
+    Input:
+    - Nama (Short Answer)
+    - Jabatan (Short Answer)
+end note
+if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan input
+        Pelaksana Kegiatan;
+
+    else (no)
+        |Operator Desa (Admin Desa)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data input;
+    endif
+|Operator Desa (Admin Desa)|
+
+stop
+@enduml
