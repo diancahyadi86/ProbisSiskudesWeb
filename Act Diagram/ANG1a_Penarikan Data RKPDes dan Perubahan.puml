@@ -7,9 +7,15 @@ RKPDes dan Perubahan Anggaran
 pada Data Entri Penganggaran;
 |Aplikasi Siskeudes (System)|
 :Menampilkan Menu
-Isian Data Anggaran;
+Penarikan Data;
 note right
+    URL:
     ..........................
 end note
-
+|Operator Desa (Administrator)|
+:Memilih tombol
+"Tarik Data RKPDes";
+|Aplikasi Siskeudes (System)|
+:Menarik data dari RKPDes
+pada Menu Perencanaan;
 @enduml
