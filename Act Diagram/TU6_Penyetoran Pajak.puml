@@ -2,14 +2,14 @@
 title "Input Penyetoran Pajak"
 |Operator Desa (Administrator)|
 start
-:Klik Menu Penyetoran Pajak 
+:Klik Menu Penyetoran Pajak
 pada Data Entri Penatausahaan;
 
 |Aplikasi Siskeudes (System)|
-:Menampilkan Menu 
+:Menampilkan Menu
 Penyetoran Pajak;
 note right
-....
+    ....
 end note
 
 |Operator Desa (Administrator)|
@@ -17,88 +17,80 @@ end note
 :Pilih Penyetoran;
 
 |Aplikasi Siskeudes (System)|
-:Menampilan List SSP 
+:Menampilan List SSP
 yang telah selesai dibuat;
 note right
-....
+    ....
 end note
 
 |Operator Desa (Administrator)|
 repeat
-:Menambahkan SSP;
-note left
-Input:
-- Nomor Bukti
-- Tgl Bukti
-- Kode Rincian
-- Kode MAP
-- Uraian
-- Nilai (Rp, otomatis generated)
-- Nama WP
-- Alamat WP
-- NPWP
-- NTPN
-- Option (Tunai/Bank)
-end note
-if (simpan?) then (yes) 
-:simpan data;
-|Aplikasi Siskeudes (System)|
-:Menyimpan 
-input;
+    :Menambahkan SSP;
+    note left
+        Input:
+        - Nomor Bukti
+        - Tgl Bukti
+        - Kode Rincian
+        - Kode MAP
+        - Uraian
+        - Nilai (Rp, otomatis generated)
+        - Nama WP
+        - Alamat WP
+        - NPWP
+        - NTPN
+        - Option (Tunai/Bank)
+    end note
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan
+        input;
 
-else (no)
-|Operator Desa (Administrator)|
-:batal;
-|Aplikasi Siskeudes (System)|
-:clear data 
-input;
-endif
-|Operator Desa (Administrator)|
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data
+        input;
+    endif
+    |Operator Desa (Administrator)|
 repeat while (Data Lain?) is (yes)
 ->no;
 
 |Operator Desa (Administrator)|
 :Pilih SSP yang telah dibuat;
 |Aplikasi Siskeudes (System)|
-:Menampilkan form pengisian 
-    Rincian Bukti Potong;
+:Menampilkan form pengisian
+Rincian Bukti Potong;
 
 |Operator Desa (Administrator)|
 repeat
-:Klik Tombol "Tambah";
-:Klik Tombol "Load";
-:Pilih Bukti Potong Pajak;
-|Aplikasi Siskeudes (System)|
-:Generate Input data berupa:
-- No. Bukti Potong
-- Kode Rincian
-- Nama Rincian
-- Nilai (Rp);
-|Operator Desa (Administrator)|
-if (simpan?) then (yes) 
-:simpan data;
-|Aplikasi Siskeudes (System)|
-:Menyimpan 
-input;
+    :Klik Tombol "Tambah";
+    :Klik Tombol "Load";
+    :Pilih Bukti Potong Pajak;
+    |Aplikasi Siskeudes (System)|
+    :Generate Input data berupa:
+    - No. Bukti Potong
+    - Kode Rincian
+    - Nama Rincian
+    - Nilai (Rp);
+    |Operator Desa (Administrator)|
+    if (simpan?) then (yes)
+        :simpan data;
+        |Aplikasi Siskeudes (System)|
+        :Menyimpan
+        input;
 
-else (no)
-|Operator Desa (Administrator)|
-:batal;
-|Aplikasi Siskeudes (System)|
-:clear data 
-input;
-|Operator Desa (Administrator)|
-endif
+    else (no)
+        |Operator Desa (Administrator)|
+        :batal;
+        |Aplikasi Siskeudes (System)|
+        :clear data
+        input;
+        |Operator Desa (Administrator)|
+    endif
 repeat while (Data Lain?) is (yes)
 ->no;
 end
-
-
-
-
-
-
-
-
 
 @enduml

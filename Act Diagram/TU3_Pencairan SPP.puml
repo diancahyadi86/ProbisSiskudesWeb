@@ -61,7 +61,7 @@ repeat
     |Operator Desa (Administrator)|
 repeat while (Data Lain?) is (yes)
 ->no;
-end
+stop
 
 
 @enduml

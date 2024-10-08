@@ -10,7 +10,7 @@ PenataUsahaan;
 :Menampilkan Menu
 Saldo Awal Kekayaan Desa;
 note right
-    ..........................
+    https://www.figma.com/design/lecuo9rcn3fEMawMhXN8SY/Siskeudes?node-id=478-213&t=1GtCEOq1qH8cFv4I-4
 end note
 
 |Operator Desa (Administrator)|
@@ -80,7 +80,7 @@ fork again
         data ekuitas;
     else (no)
         :clear data input;
-    endif
-    |Operator Desa (Administrator)|
+        |Aplikasi Siskeudes (System)|
+            endif
     stop
     @enduml

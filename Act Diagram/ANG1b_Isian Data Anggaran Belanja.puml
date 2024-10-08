@@ -23,7 +23,6 @@ if (revisi?) then (yes)
     :ubah data;
     |Aplikasi Siskeudes (System)|
     :Menyimpan data;
-
 else (no)
 endif
 |Operator Desa (Administrator)|
@@ -91,11 +90,11 @@ note right
     - Rencana Waktu Selesai
     - Sasaran Penerima (pria, wanita)
     - Rencana Anggaran Kas (Jan-Des)
-      DENGAN 4 METODE:
-      - Mengisi manual per bulan
-      - Bagi per termin
-      - Bagi per persentase x termin
-      - Bagi rata per bulan
+    DENGAN 4 METODE:
+    - Mengisi manual per bulan
+    - Bagi per termin
+    - Bagi per persentase x termin
+    - Bagi rata per bulan
 end note
 |Operator Desa (Administrator)|
 if (revisi?) then (yes)
